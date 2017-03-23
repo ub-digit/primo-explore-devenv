@@ -94,7 +94,7 @@ var SERVERS = {
 };
 
 /*Note that for SSL environments (https) define the server as: var PROXY_SERVER = https://your-server:443*/
-var PROXY_SERVER = 'http://your-server:your-port';
+var PROXY_SERVER = 'https://gu-se-primo.hosted.exlibrisgroup.com:443';
 
 
 

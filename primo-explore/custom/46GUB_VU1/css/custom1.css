@@ -1,0 +1,41 @@
+.ub-item-list-item {
+    margin-bottom: 1px;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    position: relative;
+    background-color: #fff;
+}
+
+.ub-item-list-item .md-list-item-text {
+    max-width: 100%;
+    padding: .75em 1em;
+}
+
+.ub-item-list-item h3 {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .01em;
+    margin: 0;
+    line-height: 1.2em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ub-item-list-item p {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    margin: 0;
+    line-height: 1.6em;
+}
+
+.ub-item-list-item .available {
+    color: #0f7d00;
+}
+
+.ub-item-list-item .unavailable {
+    color: gray;
+}
+
