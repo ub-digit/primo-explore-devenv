@@ -31,11 +31,39 @@
     line-height: 1.6em;
 }
 
-.ub-item-list-item .available {
+/*
+CURRENTLY AVAILIBLE STATUSES. NEEDS TO BE RED, GREEN, ORANGE 
+'status-bill_sent_to_borrower'
+'status-recallable'
+'status-reading_room_only'
+'status-non_circulating'
+'status-may_be_borrowed_biomedical_library'
+'status-may_be_borrowed_education_library'
+'status-may_be_borrowed_art_library'
+'status-may_be_borrowed_music_and_drama_library'
+'status-recently_returned'
+'status-requested'
+'status-in_transit'
+'status-requested_in_transit'
+'status-on_hold'
+'status-missing'
+'status-available'*/
+
+prm-locations md-list {
+    display: none;
+}
+
+.ub-item-list-item .status-reading_room_only, .status-available {
     color: #0f7d00;
 }
 
-.ub-item-list-item .unavailable {
-    color: gray;
+.ub-item-list-item .status-missing, .status-on_hold, .status-requested_in_transit {
+    color: #e08303;
 }
+
+.ub-item-list-item .status-recallable {
+    color: red;
+}
+
+
 
