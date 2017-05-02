@@ -71,5 +71,12 @@ prm-locations md-list {
     color: red;
 }
 
+html:lang(sv) .en-template {
+        display: none;
+}
+html:lang(en) .sv-template {
+        display: none;
+}
+
 
 
