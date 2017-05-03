@@ -13,6 +13,13 @@ prm-search > md-content.md-primoExplore-theme .main {
 }
 */
 
+.ub-home-link { 
+    position: absolute;
+    z-index: 100;
+    width: 200px;
+    height: 60px;
+}
+
 prm-full-view .services-index-under #services-index {
   display: none;
 }

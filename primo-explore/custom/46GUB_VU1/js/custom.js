@@ -29,6 +29,10 @@
     };
   }]);
 
+  app.component('prmTopBarBefore', {
+    template: ' <a href="http://www.ub.gu.se"><div class="ub-home-link"></div></a>'
+  })();
+
   app.component('prmFullViewServiceContainerAfter', {
 	  bindings: {parentCtrl: '<'},
 	  controller: 'fullViewItemViewController',
@@ -135,13 +139,8 @@
             <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
           </prm-icon>
         </a>
-      </div>
+      </div>`
 
-
-
-
-
-    `
   });
 
 
