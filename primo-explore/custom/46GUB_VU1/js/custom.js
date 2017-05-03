@@ -12,10 +12,11 @@
 
   /****************************************************************************************************/
 
-  app.controller('fullViewItemViewController', ['angularLoad', '$http', function(angularLoad, $http) {
+  app.controller('fullViewItemViewController', ['angularLoad', '$http', '$stateParams', function(angularLoad, $http, $stateParams) {
     var self = this;
 
     self.$onInit = function () {
+      console.log('stateParams', $stateParams);
       if(self.parentCtrl.service.serviceName === 'ovl') {
         var bibid = self.parentCtrl.item.pnx.control.ilsapiid;
         self.serviceName = self.parentCtrl.service.serviceName;
