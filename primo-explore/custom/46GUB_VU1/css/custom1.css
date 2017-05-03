@@ -59,11 +59,11 @@ prm-locations md-list {
     display: none;
 }
 
-.ub-item-list-item .status-requested_in_transit, .status-available, .may_be_borrowed_biomedical_library, .status-may_be_borrowed_education_library, .status-may_be_borrowed_art_library, .status-may_be_borrowed_music_and_drama_library, .status-recently_returned {
+.status-requested_in_transit, .status-available, .may_be_borrowed_biomedical_library, .status-may_be_borrowed_education_library, .status-may_be_borrowed_art_library, .status-may_be_borrowed_music_and_drama_library, .status-recently_returned {
     color: #0f7d00;
 }
 
-.ub-item-list-item, .status-bill_sent_to_borrower, .status-recallable., .status-requested, .status-requested_in_transit, .status-on_hold, .status-missing {
+.status-bill_sent_to_borrower, .status-recallable, .status-requested, .status-requested_in_transit, .status-on_hold, .status-missing {
     color: red;
 }
 
