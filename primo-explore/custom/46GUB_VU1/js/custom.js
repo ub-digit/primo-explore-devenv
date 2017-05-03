@@ -22,7 +22,7 @@
         self.lang = self.parentCtrl.displayLanguage;
         self.bibid = bibid;
         if(!bibid) { return; }
-        $http.get('http://lunda.ub.gu.se:8000/cgi-bin/items4primo.cgi?bibid='+bibid).then(function(data) {
+        $http.get('https://sunda.ub.gu.se/cgi-bin/items4primo.cgi?bibid='+bibid).then(function(data) {
           self.extendedItems = data.data.items;
         });
       }
