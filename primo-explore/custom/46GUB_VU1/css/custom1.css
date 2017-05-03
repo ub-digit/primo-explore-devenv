@@ -1,3 +1,21 @@
+/*Uncomment the follwoing lines to move facets to the left*/
+
+/*
+prm-search > md-content.md-primoExplore-theme .main {
+  display: -webkit-flex; !* Safari *!
+  -webkit-flex-flow: row-reverse wrap; !* Safari 6.1+ *!
+  display: flex;
+  flex-flow: row-reverse wrap;
+}
+.screen-gt-sm .sidebar{
+  webkit-flex: 0 0 15%;
+  flex: 0 0 15%;
+}
+*/
+
+prm-full-view .services-index-under #services-index {
+  display: none;
+}
 
 .ub-list {
     margin-top: 10px;
@@ -38,7 +56,7 @@
 }
 
 /*
-CURRENTLY AVAILIBLE STATUSES. NEEDS TO BE RED, GREEN, ORANGE 
+CURRENTLY AVAILIBLE STATUSES. NEEDS TO BE RED, GREEN, ORANGE
 'status-bill_sent_to_borrower'
 'status-recallable'
 'status-reading_room_only'
@@ -73,6 +91,3 @@ html:lang(sv) .en-template {
 html:lang(en) .sv-template {
         display: none;
 }
-
-
-
