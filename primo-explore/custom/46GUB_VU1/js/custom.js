@@ -31,14 +31,14 @@
 
   app.component('prmTopBarBefore', {
     template: ' <a href="http://www.ub.gu.se"><div class="ub-home-link"></div></a>'
-  })();
+  });
 
   app.component('prmFullViewServiceContainerAfter', {
 	  bindings: {parentCtrl: '<'},
 	  controller: 'fullViewItemViewController',
     template: `
       <div class="sv-template">
-        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar 
+        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
@@ -72,7 +72,7 @@
           </div>
         </div>
 
-        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar 
+        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
