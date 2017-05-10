@@ -18,6 +18,9 @@
     self.$onInit = function () {
       if(self.parentCtrl.service.serviceName === 'ovl') {
         var bibid = self.parentCtrl.item.pnx.control.ilsapiid;
+        if (bibid && bibid[0].includes("$$")) {
+          bibid[0] = parseInt(bibid[0].match(/O46GUB_VTLSvtls(\d+)/)[1]);
+        }
         self.serviceName = self.parentCtrl.service.serviceName;
         self.lang = self.parentCtrl.displayLanguage;
         self.bibid = bibid;
@@ -37,7 +40,7 @@
 	  bindings: {parentCtrl: '<'},
 	  controller: 'fullViewItemViewController',
     template: `
-      <div class="sv-template">
+      <div class="sv-template" ng-if="$ctrl.bibid">
         <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
@@ -89,7 +92,7 @@
         </a>
       </div>
 
-      <div class="en-template">
+      <div class="en-template" ng-if="$ctrl.bibid">
         <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=en" target="_blank">Request books and place holds
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
