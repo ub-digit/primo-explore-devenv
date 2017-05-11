@@ -16,16 +16,52 @@
     var self = this;
 
     self.$onInit = function () {
+      let bibidToUse = null;
       if(self.parentCtrl.service.serviceName === 'ovl') {
-        var bibid = self.parentCtrl.item.pnx.control.ilsapiid;
-        if (bibid && bibid[0].indexOf("$$") >= 0) {
-          bibid[0] = parseInt(bibid[0].match(/O46GUB_VTLSvtls(\d+)/)[1]);
+        let bibid = self.parentCtrl.item.pnx.control.ilsapiid;
+        if (bibid) {
+          if (bibid.length === 1) {
+            if (bibid[0].indexOf("$$") >= 0) {
+              // takes care of posts that are merged into one post in Primo and only 
+              // has one external reference in the ilsapiid array (ie SFX and Gunda)
+              bibidToUse = parseInt(bibid[0].match(/O46GUB_VTLSvtls(\d+)/)[1]);
+            }
+            else {
+              // takes care of posts that are not merged at all
+              bibidToUse = bibid[0];
+            }
+          }
+          else if (bibid.length > 1) {
+            // takes care of posts that are merged and have two or more 
+            // external references in the ilsapiid array by looking in the delcategory 
+            // entry and scanning for the physical one. 
+            let typeOfMedia = self.parentCtrl.item.pnx.delivery.delcategory;
+            if (typeOfMedia) {
+              if (typeOfMedia.length > 1) {
+                // find the physichal 
+                typeOfMedia.forEach (function(item, index) {
+                  if (item.indexOf("$$VPhysical") >= 0) {
+                    // this is the one. Now get the bibid 
+                    bibidToUse = parseInt(item.match(/O46GUB_VTLSvtls(\d+)/)[1]);
+                  } 
+                });
+                if (!bibidToUse) {
+                  typeOfMedia.forEach (function(item, index) {
+                    if (item.match(/O46GUB_VTLSvtls(\d+)/)) {
+                      // this is the one. Now get the bibid 
+                      bibidToUse = parseInt(item.match(/O46GUB_VTLSvtls(\d+)/)[1]);
+                    } 
+                  });
+                }
+              }
+            }
+          }
         }
         self.serviceName = self.parentCtrl.service.serviceName;
         self.lang = self.parentCtrl.displayLanguage;
-        self.bibid = bibid;
-        if(!bibid) { return; }
-        $http.get('https://sunda.ub.gu.se/cgi-bin/items4primo.cgi?bibid='+bibid).then(function(data) {
+        self.bibid = bibidToUse;
+        if(!bibidToUse) { return; }
+        $http.get('https://sunda.ub.gu.se/cgi-bin/items4primo.cgi?bibid='+bibidToUse).then(function(data) {
           self.extendedItems = data.data.items;
         });
       }
@@ -41,7 +77,7 @@
 	  controller: 'fullViewItemViewController',
     template: `
       <div class="sv-template" ng-if="$ctrl.bibid">
-        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
+        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
@@ -75,7 +111,7 @@
           </div>
         </div>
 
-        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
+        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid}}&theme=gunda&locale=sv" target="_blank">Beställ och köa på exemplar
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
@@ -93,7 +129,7 @@
       </div>
 
       <div class="en-template" ng-if="$ctrl.bibid">
-        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=en" target="_blank">Request books and place holds
+        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid}}&theme=gunda&locale=en" target="_blank">Request books and place holds
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
@@ -127,7 +163,7 @@
           </div>
         </div>
 
-        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid[0]}}&theme=gunda&locale=en" target="_blank">Request books and place holds
+        <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="http://sunda.ub.gu.se:8080/lib/item?id=chamo:{{$ctrl.bibid}}&theme=gunda&locale=en" target="_blank">Request books and place holds
           <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
             <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
