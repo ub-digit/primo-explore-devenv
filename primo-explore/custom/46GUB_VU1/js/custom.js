@@ -18,7 +18,7 @@
     self.$onInit = function () {
       if(self.parentCtrl.service.serviceName === 'ovl') {
         var bibid = self.parentCtrl.item.pnx.control.ilsapiid;
-        if (bibid && bibid[0].includes("$$")) {
+        if (bibid && bibid[0].indexOf("$$") >= 0) {
           bibid[0] = parseInt(bibid[0].match(/O46GUB_VTLSvtls(\d+)/)[1]);
         }
         self.serviceName = self.parentCtrl.service.serviceName;
