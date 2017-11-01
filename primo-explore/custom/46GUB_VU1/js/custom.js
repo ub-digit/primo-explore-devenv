@@ -59,7 +59,7 @@
                 self.lang = self.parentCtrl.displayLanguage;
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
-                $http.get('https://koha-lab-intra.ub.gu.se/cgi-bin/koha/svc/items/primo?biblionumber=' + bibidToUse).then(function(data) {
+                $http.get('https://koha-staging-intra.ub.gu.se/cgi-bin/koha/svc/items/primo?biblionumber=' + bibidToUse).then(function(data) {
                     self.extendedItems = data.data.items;
                 });
             }
