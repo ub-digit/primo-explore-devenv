@@ -1,103 +1,108 @@
-<div class="sv-template" ng-if="$ctrl.bibid">
-    <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="https://bestall-staging.ub.gu.se/{{$ctrl.bibid}}?lang=sv" target="_blank">Beställ eller köa på exemplar
-          <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
-            <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
+<div class="ub-template" ng-if="$ctrl.bibid">
+  <div ng-show="!$ctrl.biblio.has_item_level_queue">
+    <div ng-show="$ctrl.availibleCount > 0"> <span ng-show="$ctrl.lang == 'sv_SE'">Tillgängliga</span><span ng-show="$ctrl.lang !== 'sv_SE'">Available</span> ({{$ctrl.availibleCount}})</div>
+    <ul class="ub-list">
+      <li class="ub-item-list-item" ng-repeat="item in $ctrl.extendedItems | filter:{is_availible:'true'}">
+        <div layout=row>
+          <div flex>
+            <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.location_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.location_name_en}}</span></div>
+            <div ng-if="item.item_call_number !== ''">{{item.item_call_number}}</div>
+          </div>
+          <div flex>
+            <span ng-if="item.status !== ''" class="availability-status is-availible">{{$ctrl.getStatusText(item.status)}}</span>
 
-          <prm-icon link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right">
-            <md-icon md-svg-icon="primo-ui:chevron-right" aria-label="icon-chevron-right" class="md-primoExplore-theme" role="img"><svg id="chevron-right" width="100%" height="100%" viewBox="0 0 24 24" y="384" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
-
-      </a>
-    <div class="ub-list">
-        <div ng-repeat="item in $ctrl.extendedItems track by $index">
-            <div layout="row" flex="100" layout-align="space-between center" class="layout-align-space-between-center layout-row flex-100 ub-item-list-item">
-                <div class="md-list-item-text">
-                    <h3>{{item.locationNameSv}}</h3>
-                    <p>
-                        <span ng-if="item.statusKey !== ''" class="availability-status {{item.statusKey}}">{{item.statusSv}}</span> <span ng-if="item.statusKey !=='' && item.callNumber !== ''">|</span>
-                        <span ng-if="item.callNumber !== ''">Hylla: {{item.callNumber}}</span> <span ng-if="(item.statusKey !=='' || item.callNumber !=='') && item.units !== ''">|</span>
-                        <span ng-if="item.units !== ''">Volym: {{item.units}}</span>
-                    </p>
-                </div>
-            </div>
-            </button>
-            </prm-location>
-            </md-list-item>
+            <div ng-if="item.status_limitation">{{$ctrl.getStatusText(item.status_limitation)}}</div>
+          </div>
         </div>
-    </div>
-
-    <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="https://bestall-staging.ub.gu.se/{{$ctrl.bibid}}?lang=sv" target="_blank">Beställ eller köa på exemplar
-          <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
-            <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
-
-          <prm-icon link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right">
-            <md-icon md-svg-icon="primo-ui:chevron-right" aria-label="icon-chevron-right" class="md-primoExplore-theme" role="img"><svg id="chevron-right" width="100%" height="100%" viewBox="0 0 24 24" y="384" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
-        </a>
-</div>
-
-<div class="en-template" ng-if="$ctrl.bibid">
-    <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="https://bestall-staging.ub.gu.se/{{$ctrl.bibid}}?lang=en" target="_blank">Request books and place holds
-          <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
-            <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
-
-          <prm-icon link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right">
-            <md-icon md-svg-icon="primo-ui:chevron-right" aria-label="icon-chevron-right" class="md-primoExplore-theme" role="img"><svg id="chevron-right" width="100%" height="100%" viewBox="0 0 24 24" y="384" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
-
-      </a>
-    <div class="ub-list">
-        <div ng-repeat="item in $ctrl.extendedItems track by $index">
-            <div layout="row" flex="100" layout-align="space-between center" class="layout-align-space-between-center layout-row flex-100 ub-item-list-item">
-                <div class="md-list-item-text">
-                    <h3>{{item.locationNameEn}}</h3>
-                    <p>
-                        <span ng-if="item.statusKey !== ''" class="availability-status {{item.statusKey}}">{{item.statusEn}}</span> <span ng-if="item.statusKey !=='' && item.callNumber !== ''">|</span>
-                        <span ng-if="item.callNumber !== ''">Call Number: {{item.callNumber}}</span> <span ng-if="(item.statusKey !=='' || item.callNumber !=='') && item.units !== ''">|</span>
-                        <span ng-if="item.units !== ''">Volume: {{item.units}}</span>
-                    </p>
-                </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+    <p>
+      <div ng-include src="'custom/46GUB_VU1/js/link.html'"></div>
+    </p>
+    <div ng-show="$ctrl.notAvailibleCount > 0"><span ng-show="$ctrl.lang == 'sv_SE'">Utlånade</span> <span ng-show="$ctrl.lang !== 'sv_SE'">On loan</span> ({{$ctrl.notAvailibleCount}})</div>
+    <ul class="ub-list">
+      <li class="ub-item-list-item" ng-repeat="item in $ctrl.extendedItems | filter:{is_availible:'false'}">
+          <div layout="row">
+            <div flex>
+              <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.location_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.location_name_en}}</span></div>
+              <div ng-if="item.item_call_number !== ''">{{item.item_call_number}}</div>
+            </div>     
+            <div flex>
+              <span ng-if="item.status !== ''" class="availability-status is-not-availible">{{$ctrl.getStatusText(item.status)}} <span ng-if="item.status === 'LOANED'"> {{$ctrl.getDateObj(item.due_date) | date:'yyyy-MM-dd' }}</span></span>
             </div>
-            </button>
-            </prm-location>
-            </md-list-item>
+          </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+    <p>
+      <div ng-include src="'custom/46GUB_VU1/js/link.html'"></div>
+    </p>
+  </div>
+
+  <div ng-show="$ctrl.biblio.has_item_level_queue && $ctrl.biblio.subscriptiongroups.length > 0">
+    <ul class="ub-list">
+      <li class="ub-item-list-item link-style" ng-repeat="group in $ctrl.biblio.subscriptiongroups">
+        <div layout="row" class="ub-list-item-locations" ng-click="$ctrl.toggleContent(group.id)">
+          <div flex><span ng-show="$ctrl.lang == 'sv_SE'">{{group.location_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{group.location_name_en}}</span></div>
+          <div flex>
+            <div ng-repeat="item in group.short_info">
+              {{item}}
+            </div>
         </div>
-    </div>
+          <div>
+            <a>
+                <md-icon md-svg-icon="primo-ui:close" alt="" ng-class="{expanded: group.expanded}" class="md-primoExplore-theme" aria-hidden="true">
+                  <svg id="close_cache139" width="100%" height="100%" viewBox="0 0 24 24" y="240" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path>
+                </svg>
+                </md-icon>
+            Detaljer
+            </a>
+          </div>
+        </div>
+        <div ng-show="group.expanded" class="subscription-area">
+          <md-divider flex="" class="md-primoExplore-theme flex"></md-divider>
+          <ul class="subscription-note">
+            <li ng-repeat="subscription in group.subscriptions">
+              <div class="subscription-note-heading"><span ng-show="$ctrl.lang == 'sv_SE'">{{subscription.sublocation_name_sv}}</span> <span ng-show="$ctrl.lang !== 'sv_SE'">{{subscription.sublocation_name_en}}</span>, {{subscription.call_number}}</div>
+              <div layout=row>
+              <textarea wrap=off readonly flex>{{subscription.public_note}}</textarea>
+            </div>
+          </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+    <p>
+      <div ng-include src="'custom/46GUB_VU1/js/link.html'"></div>
+    </p>
+  </div>
 
-    <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="https://bestall-staging.ub.gu.se/{{$ctrl.bibid}}?lang=en" target="_blank">Request books and place holds
-          <prm-icon  external-link="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new">
-            <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" class="md-primoExplore-theme" role="img"><svg id="open-in-new_cache27" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
 
-          <prm-icon link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right">
-            <md-icon md-svg-icon="primo-ui:chevron-right" aria-label="icon-chevron-right" class="md-primoExplore-theme" role="img"><svg id="chevron-right" width="100%" height="100%" viewBox="0 0 24 24" y="384" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
-            </md-icon>
-            <prm-icon-after parent-ctrl="$ctrl"></prm-icon-after>
-          </prm-icon>
-        </a>
+  <div ng-show="$ctrl.biblio.has_item_level_queue && $ctrl.biblio.subscriptiongroups.length == 0">
+    <div ng-show="$ctrl.availibleCount > 0"> <span ng-show="$ctrl.lang == 'sv_SE'">Tillgängliga och utlånade</span> <span ng-show="$ctrl.lang !== 'sv_SE'">Available and on loan </span>({{$ctrl.totalCount}})</div>
+    <ul class="ub-list">
+      <li class="ub-item-list-item" ng-repeat="item in $ctrl.extendedItems">
+        <div layout=row>
+          <div flex>
+            {{item.copy_number}}
+          </div>
+          <div flex>
+            <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.location_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.location_name_en}}</span></div>
+            <div ng-if="item.item_call_number !== ''">{{item.item_call_number}}</div>
+          </div>
+          <div flex>
+            <span ng-if="item.status !== ''" ng-class="{'is-availible': item.is_availible, 'is-not-availible': !item.is_availible}"  class="availability-status">{{$ctrl.getStatusText(item.status)}}</span>
+            <div ng-if="item.status_limitation">{{$ctrl.getStatusText(item.status_limitation)}}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+    <p>
+      <div ng-include src="'custom/46GUB_VU1/js/link.html'"></div>
+    </p>
+  </div>
 </div>

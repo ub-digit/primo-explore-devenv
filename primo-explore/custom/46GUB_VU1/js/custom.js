@@ -1,8 +1,13 @@
+
+
 (function() {
     "use strict";
     'use strict';
 
+
+
     var app = angular.module('viewCustom', ['angularLoad']);
+
 
     /****************************************************************************************************/
 
@@ -12,8 +17,45 @@
 
     /****************************************************************************************************/
 
-    app.controller('fullViewItemViewController', ['angularLoad', '$http', '$stateParams', function(angularLoad, $http, $stateParams) {
+    app.controller('fullViewItemViewController', ['angularLoad', '$http', '$stateParams', '$filter','$location',  function(angularLoad, $http, $stateParams, $filter, $location) {
         var self = this;
+        self.translationSv = {
+            "volume": "Exemplar",
+            "location": "Placering",
+            "status": "Status",
+            "must_be_ordered": "Måste beställas",
+            "available": "Tillgänglig",
+            "not_for_home_loan": "Ej hemlån",
+            "reading_room_only": "Beställs till läsesal",
+            "loan_in_house_only": "Endast utlån på plats",
+            "loaned": "Utlånad till",
+            "reserved": "Reserverad",
+            "waiting": "Väntar på avhämtning",
+            "in_transit": "Under transport",
+            "delayed": "Försenad",
+            "under_acquisition": "Under inköp",
+            "not_in_place": "Ej på plats",
+            "unknown": "Okänd", 
+        },
+        self.translationEn = {
+            "volume": "Item",
+            "location": "Location",
+            "status": "Status",
+            "must_be_ordered": "Must be requested",
+            "available": "Available",
+            "not_for_home_loan": "Not for home loan",
+            "reading_room_only": "Request to reading room",
+            "loan_in_house_only": "Borrow on location",
+            "loaned": "On loan until",
+            "reserved": "Reserved",
+            "waiting": "Waiting for pick up",
+            "in_transit": "In transit",
+            "delayed": "Overdue",
+            "under_acquisition": "Ongoing purchase",
+            "not_in_place": "Not on shelf",
+            "unknown": "Unknown",
+        },
+
 
         self.$onInit = function() {
             let bibidToUse = null;
@@ -56,11 +98,34 @@
                     }
                 }
                 self.serviceName = self.parentCtrl.service.serviceName;
-                self.lang = self.parentCtrl.displayLanguage;
+                self.lang = $location.search().lang;
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
-                $http.get('https://koha-staging-intra.ub.gu.se/cgi-bin/koha/svc/items/primo?biblionumber=' + bibidToUse).then(function(data) {
-                    self.extendedItems = data.data.items;
+                $http.get('http://localhost:3000/api/biblios/' + bibidToUse).then(function(data) {
+                    self.biblio = data.data.biblio;
+                    self.extendedItems = data.data.biblio.items;
+                    self.availibleCount = $filter('filter')(self.extendedItems, {is_availible: 'true'}).length;
+                    self.notAvailibleCount = $filter('filter')(self.extendedItems, {is_availible: 'false'}).length;
+                    self.totalCount = self.extendedItems.length;
+                    self.getDateObj= function(myDate){
+                        return new Date(myDate);
+                    };
+                    self.getStatusText = function(code){
+                        var isPresent = ['LOAN_IN_HOUSE_ONLY','READING_ROOM_ONLY','NOT_FOR_HOME_LOAN','LOANED','RESERVED','WAITING','IN_TRANSIT','DELAYED','DURING_ACQUISITION', 'NOT_IN_PLACE', 'AVAILABLE'].includes(code);
+                        if (!isPresent) {
+                            code = 'unknown';
+                        }
+                        if (self.lang === 'sv_SE') {
+                            return self.translationSv[code.toLowerCase()];
+                        }
+                        return self.translationEn[code.toLowerCase()];
+                        
+                    };
+
+                    self.toggleContent = function(id) {
+                        let group = $filter('filter')(self.biblio.subscriptiongroups, {id: id});
+                        group[0].expanded = !group[0].expanded;
+                    };
                 });
             }
         };
@@ -74,8 +139,6 @@
         bindings: { parentCtrl: '<' },
         controller: 'fullViewItemViewController',
         templateUrl: "custom/46GUB_VU1/js/template.html"
-
-
     });
 
 

@@ -24,35 +24,36 @@ prm-full-view .services-index-under #services-index {
   display: none;
 }
 
+#tab-content-14 {
+    display: none; /* hide string 'exemplar:' */
+}
+
 .ub-list {
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-left: 0;
+    list-style-type: none;
+    float: left;
+    width:100%;
 }
 
 .ub-item-list-item {
     margin-bottom: 1px;
-    min-height: 0;
-    height: auto;
-    padding: 0;
     position: relative;
     background-color: #fff;
-}
-
-.ub-item-list-item .md-list-item-text {
-    max-width: 100%;
+    width: 100%;
+    float: left;
+    display: block;
     padding: .75em 1em;
 }
 
-.ub-item-list-item h3 {
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: .01em;
-    margin: 0;
-    line-height: 1.2em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.ub-item-list-item.link-style {
+    cursor: pointer;
 }
+
+.ub-list-item-locations {
+}
+
 
 .ub-item-list-item p {
     font-size: 14px;
@@ -66,20 +67,53 @@ prm-locations md-list {
     display: none;
 }
 
-.status-available, .may_be_borrowed_biomedical_library, .status-may_be_borrowed_education_library, .status-may_be_borrowed_art_library, .status-may_be_borrowed_music_and_drama_library, .status-recently_returned {
+.is-availible {
     color: #0f7d00;
 }
 
-.status-bill_sent_to_borrower, .status-recallable, .status-requested, .status-requested_in_transit, .status-on_hold, .status-missing {
+.is-not-availible {
     color: red;
 }
 
-html:lang(sv) .en-template {
-        display: none;
+ul.subscription-note {
+    list-style-type: none;
+    padding-left: 10px;
 }
-html:lang(en) .sv-template {
-        display: none;
+
+ul.subscription-note li {
+    margin-top: 20px;
 }
+
+ul.subscription-note li textarea {
+    padding: 10px;
+    overflow: scroll;
+    height: 155px;
+    width: 100%;
+    background-color: #ffffff;
+    font-family: courier;
+}
+
+ul.subscription-note li .subscription-note-heading {
+    margin-bottom: 10px;
+}
+
+
+.clearfix {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+md-icon.md-primoExplore-theme {
+    transform: rotate(45deg);
+    transition-duration: .5s;
+}   
+
+md-icon.md-primoExplore-theme.expanded {
+    transform: rotate(90deg);
+    transition-duration: .5s;
+}   
+
 
 /* wrap overflow text in facets */
 prm-facet-exact .section-content .md-chips .md-chip .md-chip-content
