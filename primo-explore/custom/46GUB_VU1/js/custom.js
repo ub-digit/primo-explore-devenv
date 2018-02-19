@@ -101,7 +101,9 @@
                 self.lang = $location.search().lang;
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
-                $http.get('http://localhost:3000/api/biblios/' + bibidToUse).then(function(data) {
+                self.loading = true;
+                $http.get('https://bestall-lab.ub.gu.se/api/biblios/' + bibidToUse).then(function(data) {
+                    self.loading = false;
                     self.biblio = data.data.biblio;
                     self.extendedItems = data.data.biblio.items;
                     self.availibleCount = $filter('filter')(self.extendedItems, {is_availible: 'true'}).length;
