@@ -1,7 +1,8 @@
-<div class="ub-template" ng-if="$ctrl.bibid">
-  <div ng-show="$ctrl.loading === true" id="loading-posts-loader">
-    <p><span ng-show="$ctrl.lang == 'sv_SE'">Laddar poster...</span> <span ng-show="$ctrl.lang !== 'sv_SE'">Loading posts...</span></p>
-  </div>
+<div ng-show="$ctrl.loading === true" id="loading-posts-loader">
+  <p><span ng-show="$ctrl.lang == 'sv_SE'">Laddar poster...</span> <span ng-show="$ctrl.lang !== 'sv_SE'">Loading posts...</span></p>
+</div>
+
+<div class="ub-template" ng-if="$ctrl.bibid && $ctrl.loading === false">
   <div ng-show="!$ctrl.biblio.has_item_level_queue">
     <div ng-show="$ctrl.availibleCount > 0"> <span ng-show="$ctrl.lang == 'sv_SE'">Tillgängliga</span><span ng-show="$ctrl.lang !== 'sv_SE'">Available</span> ({{$ctrl.availibleCount}})</div>
     <ul class="ub-list">
