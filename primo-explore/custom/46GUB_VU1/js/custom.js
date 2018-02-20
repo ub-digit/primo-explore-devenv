@@ -101,8 +101,8 @@
                 self.lang = $location.search().lang;
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
-                self.loading = true; //https://bestall-lab.ub.gu.se
-                $http.get('http://local.ub.gu.se:3000/api/biblios/' + bibidToUse + '?force=true').then(function(data) {
+                self.loading = true;
+                $http.get('https://bestall-lab.ub.gu.se/api/biblios/' + bibidToUse + '?force=true').then(function(data) {
                     self.loading = false;
                     self.biblio = data.data.biblio;
                     self.extendedItems = data.data.biblio.items;
