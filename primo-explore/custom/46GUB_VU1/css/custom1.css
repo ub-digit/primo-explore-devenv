@@ -104,12 +104,12 @@ ul.subscription-note li .subscription-note-heading {
     clear: both;
 }
 
-md-icon.md-primoExplore-theme {
+md-icon.md-primoExplore-theme.ub-close {
     transform: rotate(45deg);
     transition-duration: .5s;
 }   
 
-md-icon.md-primoExplore-theme.expanded {
+md-icon.md-primoExplore-theme.ub-close.expanded {
     transform: rotate(90deg);
     transition-duration: .5s;
 }   

@@ -3,7 +3,7 @@
 </div>
 
 <div class="ub-template" ng-if="$ctrl.bibid && $ctrl.loading === false">
-  <div ng-show="!$ctrl.biblio.has_item_level_queue">
+  <div ng-show="!$ctrl.biblio.has_item_level_queue">  
     <div ng-show="$ctrl.availibleCount > 0"> <span ng-show="$ctrl.lang == 'sv_SE'">Tillgängliga</span><span ng-show="$ctrl.lang !== 'sv_SE'">Available</span> ({{$ctrl.availibleCount}})</div>
     <ul class="ub-list">
       <li class="ub-item-list-item" ng-repeat="item in $ctrl.extendedItems | filter:{is_availible:'true'}">
@@ -56,7 +56,7 @@
         </div>
           <div>
             <a>
-                <md-icon md-svg-icon="primo-ui:close" alt="" ng-class="{expanded: group.expanded}" class="md-primoExplore-theme" aria-hidden="true">
+                <md-icon md-svg-icon="primo-ui:close" alt="" ng-class="{expanded: group.expanded}" class="md-primoExplore-theme ub-close" aria-hidden="true">
                   <svg id="close_cache139" width="100%" height="100%" viewBox="0 0 24 24" y="240" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
                     <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path>
                 </svg>
