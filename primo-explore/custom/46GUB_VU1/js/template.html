@@ -10,7 +10,7 @@
         <div layout=row>
           <div flex>
             <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.location_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.location_name_en}}</span></div>
-            <div ng-if="item.item_call_number !== ''">{{item.item_call_number}}</div>
+            <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.sublocation_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.sublocation_name_en}}</span><span>, </span><span ng-if="item.item_call_number !== ''"> {{item.item_call_number}}</span></div>
           </div>
           <div flex>
             <span ng-if="item.status !== ''" class="availability-status is-availible">{{$ctrl.getStatusText(item.status)}}</span>
@@ -30,7 +30,7 @@
           <div layout="row">
             <div flex>
               <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.location_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.location_name_en}}</span></div>
-              <div ng-if="item.item_call_number !== ''">{{item.item_call_number}}</div>
+              <div><span ng-show="$ctrl.lang == 'sv_SE'">{{item.sublocation_name_sv}}</span><span ng-show="$ctrl.lang !== 'sv_SE'">{{item.sublocation_name_en}}</span><span>, </span><span ng-if="item.item_call_number !== ''"> {{item.item_call_number}}</span></div>
             </div>     
             <div flex>
               <span ng-if="item.status !== ''" class="availability-status is-not-availible">{{$ctrl.getStatusText(item.status)}} <span ng-if="item.status === 'LOANED'"> {{$ctrl.getDateObj(item.due_date) | date:'yyyy-MM-dd' }}</span></span>
