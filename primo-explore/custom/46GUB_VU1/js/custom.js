@@ -102,7 +102,7 @@
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
                 self.loading = true;
-                $http.get('https://bestall-lab.ub.gu.se/api/biblios/' + bibidToUse + '?force=true').then(function(data) {
+                $http.get('https://bestall-staging.ub.gu.se/api/biblios/' + bibidToUse + '?force=true').then(function(data) {
                     self.loading = false;
                     self.biblio = data.data.biblio;
                     self.extendedItems = data.data.biblio.items;
