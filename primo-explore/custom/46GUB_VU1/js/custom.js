@@ -99,6 +99,10 @@
                 }
                 self.serviceName = self.parentCtrl.service.serviceName;
                 self.lang = $location.search().lang;
+                self.lang_code = 'en';
+                if (self.lang === "sv_SE") {
+                    self.lang_code = "sv";
+                }
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
                 self.loading = true;

@@ -1,4 +1,5 @@
-<a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="https://bestall-staging.ub.gu.se/{{$ctrl.bibid}}?lang=sv" target="_blank">
+
+  <a ng-if="$ctrl.serviceName ==='ovl'" class="arrow-link md-primoExplore-theme" href="https://bestall-staging.ub.gu.se/{{$ctrl.bibid}}?lang={{$ctrl.lang_code}}" target="_blank">
     <span ng-show="!$ctrl.biblio.has_item_level_queue"><span ng-show="$ctrl.lang == 'sv_SE'">Beställ och köa på exemplar</span><span ng-show="$ctrl.lang !== 'sv_SE'">Order and reserve</span></span>
     <span ng-show="$ctrl.biblio.has_item_level_queue && $ctrl.biblio.subscriptiongroups.length == 0"><span ng-show="$ctrl.lang == 'sv_SE'">Beställ och köa på exemplar</span><span ng-show="$ctrl.lang !== 'sv_SE'">Order and reserve</span></span>
     <span ng-show="$ctrl.biblio.has_item_level_queue && $ctrl.biblio.subscriptiongroups.length > 0"><span ng-show="$ctrl.lang == 'sv_SE'">Beställ ur bestånd och se exemplar</span><span ng-show="$ctrl.lang !== 'sv_SE'">Select from holdings</span>
