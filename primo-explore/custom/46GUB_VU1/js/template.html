@@ -4,6 +4,10 @@
 
 <div class="ub-template" ng-if="$ctrl.bibid && $ctrl.loading === false">
   <div ng-show="!$ctrl.biblio.has_item_level_queue">  
+    <div ng-show="$ctrl.notAvailibleCount == 0">
+      <span ng-show="$ctrl.lang !== 'sv_SE'">There are no items</span>
+      <span ng-show="$ctrl.lang == 'sv_SE'">Det finns inga exemplar</span>
+    </div>
     <div ng-show="$ctrl.availibleCount > 0"> <span ng-show="$ctrl.lang == 'sv_SE'">Tillgängliga</span><span ng-show="$ctrl.lang !== 'sv_SE'">Available</span> ({{$ctrl.availibleCount}})</div>
     <ul class="ub-list">
       <li class="ub-item-list-item" ng-repeat="item in $ctrl.extendedItems | filter:{is_availible:'true'}">
