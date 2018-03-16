@@ -4,7 +4,7 @@
 
 <div class="ub-template" ng-if="$ctrl.bibid && $ctrl.loading === false">
   <div ng-show="!$ctrl.biblio.has_item_level_queue">  
-    <div ng-show="$ctrl.notAvailibleCount == 0">
+    <div ng-show="$ctrl.notAvailibleCount == 0 && $ctrl.availibleCount == 0">
       <span ng-show="$ctrl.lang !== 'sv_SE'">There are no items</span>
       <span ng-show="$ctrl.lang == 'sv_SE'">Det finns inga exemplar</span>
     </div>

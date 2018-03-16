@@ -96,6 +96,45 @@
                             }
                         }
                     }
+
+
+                    if (!bibToUse) {
+                        if (bibid.length === 1) {
+                            if (bibid[0].indexOf("$$") >= 0) {
+                                // takes care of posts that are merged into one post in Primo and only 
+                                // has one external reference in the ilsapiid array (ie SFX and Gunda)
+                                bibidToUse = parseInt(bibid[0].match(/O46GUB_KOHA(\d+)/)[1]);
+                            } else {
+                                // takes care of posts that are not merged at all
+                                bibidToUse = bibid[0];
+                            }
+                        } else if (bibid.length > 1) {
+                            // takes care of posts that are merged and have two or more 
+                            // external references in the ilsapiid array by looking in the delcategory 
+                            // entry and scanning for the physical one. 
+                            let typeOfMedia = self.parentCtrl.item.pnx.delivery.delcategory;
+                            if (typeOfMedia) {
+                                if (typeOfMedia.length > 1) {
+                                    // find the physichal 
+                                    typeOfMedia.forEach(function(item, index) {
+                                        if (item.indexOf("$$VPhysical") >= 0) {
+                                            // this is the one. Now get the bibid 
+                                            bibidToUse = parseInt(item.match(/O46GUB_KOHA(\d+)/)[1]);
+                                        }
+                                    });
+                                    if (!bibidToUse) {
+                                        typeOfMedia.forEach(function(item, index) {
+                                            if (item.match(/O46GUB_VTLSvtls(\d+)/)) {
+                                                // this is the one. Now get the bibid 
+                                                bibidToUse = parseInt(item.match(/O46GUB_KOHA(\d+)/)[1]);
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                 }
                 self.serviceName = self.parentCtrl.service.serviceName;
                 self.lang = $location.search().lang;
