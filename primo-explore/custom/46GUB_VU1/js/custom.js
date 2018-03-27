@@ -60,7 +60,13 @@
         self.$onInit = function() {
             let bibidToUse = null;
             if (self.parentCtrl.service.serviceName === 'ovl') {
-                let bibid = self.parentCtrl.item.pnx.control.ilsapiid;
+                let bibid = null;
+                if (self.parentCtrl.item.pnx.control.ilsapiid) {
+                    bibid = self.parentCtrl.item.pnx.control.ilsapiid;
+                }
+                else if (self.parentCtrl.item.pnx.control.sourcerecordid) {
+                    bibid = self.parentCtrl.item.pnx.control.sourcerecordid;
+                }
                 if (bibid) {
                     if (bibid.length === 1) {
                         if (bibid[0].indexOf("$$") >= 0) {
@@ -98,7 +104,7 @@
                     }
 
 
-                    if (!bibToUse) {
+                    if (!bibidToUse) {
                         if (bibid.length === 1) {
                             if (bibid[0].indexOf("$$") >= 0) {
                                 // takes care of posts that are merged into one post in Primo and only 
