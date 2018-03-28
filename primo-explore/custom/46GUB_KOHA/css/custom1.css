@@ -13,6 +13,11 @@ prm-search > md-content.md-primoExplore-theme .main {
 }
 */
 
+
+.md-toolbar-tools .md-fab-action-item:nth-child(3),  .md-toolbar-tools .md-fab-action-item:nth-child(1) {
+    display: none !important;
+}
+
 .ub-home-link {
     position: absolute;
     z-index: 100;
