@@ -189,7 +189,7 @@
     app.component('prmFullViewServiceContainerAfter', {
         bindings: { parentCtrl: '<' },
         controller: 'fullViewItemViewController',
-        templateUrl: "custom/46GUB_VU1/js/template.html"
+        templateUrl: "custom/46GUB_KOHA/js/template.html"
     });
 
 
