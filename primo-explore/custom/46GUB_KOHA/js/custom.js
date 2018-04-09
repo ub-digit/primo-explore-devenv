@@ -159,7 +159,7 @@
                     self.notAvailibleCount = $filter('filter')(self.extendedItems, {is_availible: 'false'}).length;
                     self.totalCount = self.extendedItems.length;
                     self.getDateObj= function(myDate){
-                        return new Date(myDate);
+                        return new Date(myDate.substr(0,10));
                     };
                     self.getStatusText = function(code){
                         var isPresent = ['LOAN_IN_HOUSE_ONLY','READING_ROOM_ONLY','NOT_FOR_HOME_LOAN','LOANED','RESERVED','WAITING','IN_TRANSIT','DELAYED','DURING_ACQUISITION', 'NOT_IN_PLACE', 'AVAILABLE'].includes(code);
