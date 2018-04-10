@@ -61,10 +61,10 @@
             let bibidToUse = null;
             if (self.parentCtrl.service.serviceName === 'ovl') {
                 let bibid = null;
-                if (self.parentCtrl.item.pnx.control.ilsapiid && self.parentCtrl.item.pnx.control.sourceid === '46GUB_KOHA') {
+                if (self.parentCtrl.item.pnx.control.ilsapiid && self.parentCtrl.item.pnx.control.sourceid[0] === '46GUB_KOHA') {
                     bibid = self.parentCtrl.item.pnx.control.ilsapiid;
                 }
-                else if (self.parentCtrl.item.pnx.control.sourcerecordid && self.parentCtrl.item.pnx.control.sourceid === '46GUB_KOHA') {
+                else if (self.parentCtrl.item.pnx.control.sourcerecordid && self.parentCtrl.item.pnx.control.sourceid[0] === '46GUB_KOHA') {
                     bibid = self.parentCtrl.item.pnx.control.sourcerecordid;
                 }
 
