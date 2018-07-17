@@ -151,9 +151,10 @@
                 self.bibid = bibidToUse;
                 if (!bibidToUse) { return; }
                 self.loading = true;
-                $http.get('https://bestall-staging.ub.gu.se/api/biblios/' + bibidToUse + '?force=true').then(function(data) {
+                $http.get('https://bestall.ub.gu.se/api/biblios/' + bibidToUse + '?force=true').then(function(data) {
                     self.loading = false;
                     self.biblio = data.data.biblio;
+                    self.no_in_queue = data.data.biblio.no_in_queue;
                     self.extendedItems = data.data.biblio.items;
                     self.availibleCount = $filter('filter')(self.extendedItems, {is_availible: 'true'}).length;
                     self.notAvailibleCount = $filter('filter')(self.extendedItems, {is_availible: 'false'}).length;
