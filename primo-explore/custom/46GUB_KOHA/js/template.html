@@ -33,6 +33,7 @@
     </p>
 
     <div ng-show="$ctrl.notAvailibleCount > 0"><span ng-show="$ctrl.lang == 'sv_SE'">Utlånade</span> <span ng-show="$ctrl.lang !== 'sv_SE'">On loan</span> ({{$ctrl.notAvailibleCount}})</div>
+    <div ng-show="$ctrl.notAvailibleCount > 0">{{$ctrl.no_in_queue}} <span ng-show="$ctrl.lang == 'sv_SE'">personer i kö</span> <span ng-show="$ctrl.lang !== 'sv_SE'">reservations for items on loan</span></div>
     <ul class="ub-list">
       <li class="ub-item-list-item" ng-repeat="item in $ctrl.extendedItems | filter:{is_availible:'false'}">
           <div layout="row">
