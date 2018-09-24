@@ -156,6 +156,7 @@
                     self.loading = false;
                     self.biblio = data.data.biblio;
                     self.extendedItems = data.data.biblio.items;
+                    self.no_in_queue = data.data.biblio.no_in_queue;
                     self.availibleCount = $filter('filter')(self.extendedItems, {is_availible: 'true'}).length;
                     self.notAvailibleCount = $filter('filter')(self.extendedItems, {is_availible: 'false'}).length;
                     self.totalCount = self.extendedItems.length;
