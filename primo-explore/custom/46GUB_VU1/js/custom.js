@@ -61,6 +61,12 @@
             let bibidToUse = null;
             if (self.parentCtrl.service.serviceName === 'ovl') {
                 let bibid = null;
+                if (self.parentCtrl.item.pnx.control.originalsourceid) {
+                    let isKoha = self.parentCtrl.item.pnx.control.originalsourceid[0].includes('KOHA');
+                    if (!isKoha) {
+                        return;
+                    }
+                }
                 if (self.parentCtrl.item.pnx.control.ilsapiid) {
                     bibid = self.parentCtrl.item.pnx.control.ilsapiid;
                 }
