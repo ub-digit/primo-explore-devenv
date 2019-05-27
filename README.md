@@ -1,9 +1,9 @@
 
-
+# ANVÄNDS EJ. ANVÄND DOCKER IMAGE ISTÄLLET https://github.com/ub-digit/primo-devel.git
 
 # The Primo New UI Customization Workflow Development Environment
 
-
+~~
 ##Structure
 
 - <b>gulp directory</b> : holds the various build scripts for the environment and the configuration file (config.js) in which the target proxy server is defined
@@ -129,3 +129,5 @@ The development package allows you to configure :
     ![Package Image](./help_files/packages.png "Package up")
 
     ![BO Image](./help_files/bo.png "BO up")
+    
+    ~~
